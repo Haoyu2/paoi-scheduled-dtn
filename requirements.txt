@@ -1,0 +1,9 @@
+# Tier-1 (sim/montecarlo, sim/experiments): Python >= 3.10 standard library only.
+# The single optional dependency below is needed only for the real-orbit
+# (Iridium-NEXT TLE) scenario generators in sim/tier2/. Recorded results
+# were produced with Skyfield 1.48 exactly (see sim/tier2/TLE_PROVENANCE.md).
+skyfield>=1.48
+
+# Tier-2 (sim/tier2): OMNeT++ 5.7.1 + dtnsim (external; build instructions in
+# sim/tier2/README.md, patches in sim/tier2/dtnsim_patch/).
+# ION cross-check (sim/ion): ION-DTN 4.1.4 (external; see sim/ion/README.md).

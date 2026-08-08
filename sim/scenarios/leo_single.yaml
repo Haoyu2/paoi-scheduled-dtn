@@ -1,0 +1,59 @@
+# Scenario A0 — synthetic single LEO segment.
+# Exact (P, W) chosen to match the Result 1 closed forms analytically.
+# This file is the canonical, publishable spec; the simulator reads it
+# and a fixed seed list to reproduce experiments E1, E2, E12.
+schema_version: 1
+name: leo_single_a0
+description: >
+  Single deterministic-periodic LEO contact (one ground-station pass per
+  orbit). Anchor for Result 1 residual-wait / AoI / PAoI validation.
+
+segments:
+  - id: leo0
+    type: leo                 # deterministic periodic ON/OFF
+    period_s: 5736            # P: 550 km orbit, ~95.6 min
+    window_s: 430             # W: ~7.2 min pass  -> delta = W/P ~= 0.075
+    service_prop_s: 5.0       # T_s: lumped service + propagation (near-deterministic)
+
+source:
+  generation: at_will         # generate-at-will baseline (clean T_s floor)
+
+replication:
+  degree_k: 1                 # swept 1..K_max in E4/E5/E7
+  K_max: 1                    # # independent contacts (raise for multi-sat scenarios)
+  routing: independent_contacts   # vs. same_bottleneck for E5
+
+energy:
+  enabled: false              # turn on for §6.4 / R3 experiments
+  harvest_units_per_period: null   # lambda_e * P / e = eta (copies/period)
+  battery_capacity_units: null     # B (units = copies)
+  per_copy_cost_units: 1
+  policy: all_or_nothing      # fire k iff b >= k
+
+run:
+  replications: 30
+  seed_base: 1000             # seeds = seed_base + [0..replications)
+  warmup_s: 573600            # ~100 periods discarded for steady state
+  horizon_s: 5736000          # ~1000 periods measured
+
+metrics:
+  - mean_aoi
+  - mean_paoi
+  - paoi_p95
+  - paoi_p99
+  - residual_histogram
+
+# Sweep overlay for E1/E2 (duty cycle): the runner overrides window_s to
+# hit each delta; period_s held fixed.
+sweeps:
+  delta: [0.02, 0.05, 0.075, 0.10, 0.20, 0.35, 0.50]
+
+# Closed-form expectations (E1/E2 pass checks), with G = P(1-delta):
+#   mean residual   E[R]   = P*(1-delta)^2 / 2
+#   mean AoI        Δbar   = T_s + E[R]
+#   peak AoI        PAoI   = T_s + P*(1-delta)
+#   provisioning slopes: d ln E[Δ] / d ln(1-delta) ~= 2 ; for PAoI ~= 1
+expected_closed_form:
+  mean_residual_s: "P*(1-delta)**2/2"
+  mean_aoi_s: "service_prop_s + P*(1-delta)**2/2"
+  peak_aoi_s: "service_prop_s + P*(1-delta)"

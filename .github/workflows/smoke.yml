@@ -1,0 +1,39 @@
+name: smoke
+# Tier-1 quick validation: stdlib-only, seconds per check. Confirms the
+# analytical laws still reproduce on a clean Python. Full-statistics runs
+# (and Tier-2/ION) are documented in sim/VALIDATION.md and run off-CI.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  tier1-smoke:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+    defaults:
+      run:
+        working-directory: sim
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: E1 residual law (quick)
+        # quick mode has too few samples for the E2 slope check; gate on E1
+        run: python3 experiments/e1_residual.py --quick | tee e1.out && grep -q "E1 PASS" e1.out
+      - name: E9/E10 work conservation + M/D/1 limit (quick)
+        run: python3 experiments/e9_battery.py --quick | tee e9.out && grep -q "E9 Poisson PASS | E9 deterministic PASS | E10 PASS" e9.out
+      - name: Proposition-1 increment condition grid
+        run: python3 experiments/check_gainboundq.py | tee gq.out && grep -q "^PASS" gq.out
+      - name: E18 uncertainty objective (quick)
+        run: python3 experiments/e18_uncertain.py --quick | tee e18.out && grep -q "^PASS" e18.out
+      - name: E14 ceiling branch (quick)
+        run: python3 experiments/e_ceiling.py --quick | tee e14.out && grep -q "^PASS" e14.out
+      - name: Validate CITATION.cff
+        if: matrix.python-version == '3.12'
+        working-directory: .
+        run: pip install -q cffconvert && cffconvert --validate

@@ -1,0 +1,32 @@
+ION R1 residual-wait validation (P=60s W=6s G=54s delta=0.10)
+plan start epoch: 1783303657
+bundles sent:      974
+bundles delivered: 974   (loss: 0)
+mean delay:  26.652 s   (theory G^2/2P = 24.300 s, error +9.68%)
+std:         17.174 s
+min:         0.004 s
+max:         57.068 s   (theory max ~ G = 54 s)
+frac < 1 s:  0.075   (theory atom = delta = 0.10)
+
+histogram (10 bins over 0..60 s):
+  [ 0, 6)   158  ##########
+  [ 6,12)   101  ######
+  [12,18)    87  #####
+  [18,24)   104  ######
+  [24,30)    83  #####
+  [30,36)   103  ######
+  [36,42)   105  ######
+  [42,48)    98  ######
+  [48,54)    87  #####
+  [54,60)    48  ###
+
+decomposition (delay = residual + dispatch lag):
+  predicted residual mean (realized phases): 24.339 s (closed form 24.300 s)
+  measured mean delay:                        26.652 s
+  gap arrivals   (n=879): lag = 2.503 +/- 0.512 s  (= measured T_s)
+  window arrivals (n=95): lag = 0.553 +/- 0.788 s
+
+per-bundle regression delay = a + b*residual_pred:
+  slope b = 1.0160   (law exact iff b=1; check |b-1|<=0.05: PASS)
+  intercept a = 1.924 s  (= dispatch lag, the model's T_s)
+note: the raw mean includes the dispatch lag (T_s); at operational periods (P~5.7e3 s) that lag is ~0.04% of the mean.

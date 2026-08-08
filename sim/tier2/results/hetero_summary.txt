@@ -1,0 +1,22 @@
+# Tier-2 full heterogeneous end-to-end scenario (validates the paper title)
+# chain: sensor(1) -> UAV mule(2) -> LEO(3) -> gateway(4), real CGR (dtnsim)
+#   seg1 1<->2 terrestrial opportunistic: heavy-tailed (gamma CV=1.3) gaps, mean gap 2798s
+#   seg2 2<->3 UAV semi-periodic: P=1800s, W=180s, jitter sigma=240s
+#   seg3 3<->4 LEO deterministic periodic: P=5736s, W=430s
+# 860 updates node1->node4, 3 hops; delivered 825/860 (96%; rest in-flight at horizon)
+#
+# COMPOSITION (Sec 6.2): predicted E[Y] = E[R1]+E[R2]+E[R3]
+#   E[R1]=3617s (terrestrial), E[R2]=758s (UAV), E[R3]=2454s (LEO)  -> sum = 6829s
+#   simulated mean end-to-end delay = 6754s  (1.1% error)  => additive residuals hold
+#   in real CGR across all three heterogeneous segment types.
+# full-chain freshness (energy off): mean AoI = 7038s, mean PAoI = 10338s.
+#
+# ENERGY COUPLING (finite battery at UAV+LEO relays, harvest 0.02, cap sweep):
+#   B=4:  delivered 268, PAoI 111057   (relay cannot clear per-window backlog)
+#   B=8:  delivered 498, PAoI  80879
+#   B=16: delivered 825, PAoI  14265
+#   B=32: delivered 825, PAoI  10576
+#   B=64: delivered 825, PAoI  10338   (= energy-off; battery covers the burst)
+# => a relay battery must cover the per-contact forwarding burst; below that,
+#    end-to-end PAoI degrades ~11x and delivery collapses. Energy coupling
+#    extends to the multi-segment setting.

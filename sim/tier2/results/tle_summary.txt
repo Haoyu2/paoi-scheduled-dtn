@@ -1,0 +1,9 @@
+# Tier-2 A1 -- REAL LEO contact plan from TLEs (Skyfield) in dtnsim/CGR
+# sat=IRIDIUM 106, GS=Svalbard(78.23,15.39), 7 days, 101 passes, min-elev 10deg
+# realized: mean gap E[V]=5481s, CV(V)=0.01 (near-periodic), delta=0.0905
+# delivered: 2015/2015 (100%)
+scalar dtnsim.node[2].app appBundleReceivedDelay:mean 2490.9022412851
+scalar dtnsim.node[2].app appBundleReceivedDelay:max 5548
+scalar dtnsim.node[2].app appBundleReceivedDelay:min 0
+# predicted renewal residual law E[V^2]/2E[C] = 2492.4s; sim mean delay = 2490.9s (0.06% error)
+# => the renewal residual law holds on a REAL orbital (Iridium) contact plan.

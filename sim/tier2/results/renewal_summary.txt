@@ -1,0 +1,19 @@
+# Tier-2 renewal-gap (sec 6.5) -- random contact gaps in real CGR
+# single segment node1->node2, gaps ~ gamma(CV), mean G=5306, W=430
+## gamma05
+mean delivery delay (Y): 2930.88   std(Y): 2431.16
+mean AoI  : 3117.0 s
+mean PAoI : 5315.5 s
+inversion (PAoI < AoI)? False
+## gamma10
+mean delivery delay (Y): 4688.24   std(Y): 4895.23
+mean AoI  : 4790.3 s
+mean PAoI : 5330.9 s
+inversion (PAoI < AoI)? False
+## gamma20
+mean delivery delay (Y): 10582.01   std(Y): 11829.51
+mean AoI  : 10402.5 s
+mean PAoI : 7704.1 s
+inversion (PAoI < AoI)? True
+# residual law: mean delay Y matches E[V^2]/2E[C] (2917/4671/10568) to <0.5%
+# inversion: CV=1.88 -> mean AoI(10402) > mean PAoI(7704); CV<=1 -> PAoI>AoI. Crosses at CV~1 (CV^2>1).

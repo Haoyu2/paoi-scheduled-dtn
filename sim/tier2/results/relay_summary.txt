@@ -1,0 +1,10 @@
+# Tier-2 relay (sensor->sat->gateway) -- Result-2 phase-mixing lemma in real CGR
+# incomm: P1=5736/W1=430, P2=4500/W2=338 (incommensurate)
+# comm:   P1=P2=5736/W=430, seg2 offset P/2 (commensurate, locked)
+## mode=incomm
+mean delivery delay (Y): 4424.74   std(Y): 2086.12  (single-seg E[R]=2454.1)
+## mode=comm
+mean delivery delay (Y): 5305.74   std(Y): 1656.97  (single-seg E[R]=2454.1)
+# predicted incomm: E[Y]=4379, sd(Y)=sqrt(VarR1+VarR2)=2072  (variance ADDS => R1 _|_ R2)
+# predicted comm:   E[Y]=5322, sd(Y)=sqrt(VarR1)=1630         (R2 locked ~const => no added variance)
+# => incommensurate periods: lemma holds (var additive); commensurate: phase locking (failure mode)

@@ -1,0 +1,23 @@
+# Tier-2 dtnsim LEO scenario (leo.ini) -- OMNeT++ 5.7.1 + dtnsim, CGR routing
+# P=5736 W=430 delta=0.075 horizon=60 periods; node1->node2 periodic LEO contact
+# closed-form R1: E[R]=2453.9s, max R=G=5306s, atom delta=0.075
+scalar dtnsim.node[0].app appBundleReceived:count 0
+scalar dtnsim.node[0].app appBundleSent:count 0
+scalar dtnsim.node[1].app appBundleReceived:count 0
+scalar dtnsim.node[1].app appBundleSent:count 1147
+scalar dtnsim.node[2].app appBundleReceivedDelay:mean 2453.920291362
+scalar dtnsim.node[2].app appBundleReceivedDelay:max 5304
+scalar dtnsim.node[2].app appBundleReceivedDelay:min 0
+scalar dtnsim.node[2].app appBundleReceivedHops:mean 1
+scalar dtnsim.node[2].app appBundleReceived:count 1129
+scalar dtnsim.node[2].app appBundleSent:count 0
+
+# AoI/PAoI reconstructed from delivery-delay vector (aoi_from_vec.py):
+deliveries in vector: 1129
+mean delivery delay (Y): 2453.92  (closed-form E[R]=2454.1)
+mean AoI  : 2554.5 s
+mean PAoI : 5450.2 s   (cadence Z=P=5736.0; PAoI=Z+Y_min => ~P + small)
+# interpretation: mean delay Y = E[R]=2454 (R1 residual, exact);
+#   mean PAoI 5450 ~= G(5306) + finite-gen offset ~Dg/2(150)  [R1 PAoI=G + sec6.6 correction];
+#   mean AoI 2554 ~= E[R](2454) + finite-gen offset  [R1 mean AoI + sec6.6];
+#   PAoI is cadence-dominated (~G); replication would cut Y_min, not the cadence (sec6.6).

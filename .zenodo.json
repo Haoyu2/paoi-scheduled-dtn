@@ -1,0 +1,42 @@
+{
+  "title": "Peak Age of Information over Scheduled, Energy-Constrained Multi-Segment DTNs: Bundle Replication under Route Uncertainty (artifact)",
+  "description": "Analysis code, simulators (model-exact Monte-Carlo; dtnsim/OMNeT++ Bundle Protocol + CGR patches; ION-DTN cross-check configs), real Iridium-NEXT contact-plan scenarios, recorded results, and figure generators for the manuscript prepared for submission to Digital Communications and Networks.",
+  "upload_type": "software",
+  "license": "MIT",
+  "creators": [
+    {
+      "name": "Wang, Haoyu",
+      "affiliation": "University of Massachusetts Boston"
+    },
+    {
+      "name": "Sheng, Bo",
+      "affiliation": "University of Massachusetts Boston"
+    },
+    {
+      "name": "Zhang, Xiaoqian",
+      "affiliation": "University of Nebraska at Omaha"
+    }
+  ],
+  "keywords": [
+    "age of information",
+    "peak age of information",
+    "delay-tolerant networking",
+    "contact graph routing",
+    "bundle replication",
+    "energy harvesting",
+    "LEO satellite networks",
+    "non-terrestrial networks"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/UNO-Networks-Lab/paoi-scheduled-dtn",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://uno-networks-lab.github.io/paoi-scheduled-dtn/",
+      "relation": "isDescribedBy",
+      "scheme": "url"
+    }
+  ]
+}

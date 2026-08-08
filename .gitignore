@@ -1,0 +1,30 @@
+# internal notes / assistant context (not part of the public artifact)
+CLAUDE.md
+AGENTS.md
+RESEARCH_NOTES.md
+.claude/
+.idea/
+
+# local environments / scratch
+venv/
+tmp/
+.DS_Store
+__pycache__/
+*.pyc
+
+# internal working documents (submission-private cover letter is stripped
+# from the public tree by scripts/publish-public.sh, not ignored here)
+paper/FUTURE-THESIS-RESTRUCTURE.md
+paper/REVIEW_RESPONSE.md
+
+# LaTeX / render intermediates (keep the PDFs)
+texput.log
+sim/texput.log
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.fls
+paper/*.fdb_latexmk
+paper/pg*.jpg
+slides/slide-*.jpg
+slides/~$*

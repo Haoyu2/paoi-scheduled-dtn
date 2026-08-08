@@ -1,0 +1,13 @@
+# Tier-2 R3 -- energy-replication threshold in real CGR (dtnsim + Energy module)
+# diamond: source(1)->dest(4) via 2 independent relays(2,3); random relay faults (TTF8000/TTR4000)
+# energy gate on source: e=1, gen=300, eta=harvestRate*300; k=1=cgrModel350, k=2=sprayAndWait(2 copies)
+# delivery (of 1147), higher=better:
+eta	k1_deliv	k1_delay	k2_deliv	k2_delay
+0.60	386	45447	301	114448
+0.99	427	44901	316	117881
+1.50	474	43657	425	84524
+2.01	552	43689	493	75162
+3.00	601	44447	622	65133
+6.00	739	39756	786	38862
+# => eta<2: k=2 STARVES (fewer delivered than k=1); eta>=3: k=2 WINS (fault hedging).
+# crossover at eta~=k=2 = the R3 threshold k*=min(Kmax,floor(eta)), in a real BP/CGR stack.

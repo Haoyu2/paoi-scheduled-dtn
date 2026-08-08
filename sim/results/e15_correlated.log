@@ -1,0 +1,9 @@
+eta=3.0, B=64, K_max=6  (phi=0 -> i.i.d.; dwell=1/(1-phi))
+phi   PAoI[k=1..6]                                    k*  p99(k*)  max_wc_err
+0.00  1.410 1.248 1.178 1.457 1.760 2.073   3   1.778   2.9e-04
+0.90  1.410 1.248 1.224 1.459 1.758 2.076   3   3.065   2.7e-04
+0.98  1.410 1.264 1.333 1.479 1.755 2.076   2   2.022   3.1e-04
+
+k* = 3 under all phi: False;  work conservation holds: True
+-> wrote /home/haoyu/dtn-sim/results/e15_correlated.csv
+CHECK

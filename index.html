@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PAoI over Scheduled, Energy-Constrained Multi-Segment DTNs</title>
+<style>
+  :root{
+    --bg:#ffffff; --ink:#1c2434; --mut:#5b6b8c; --card:#f4f6fb;
+    --navy:#16213c; --teal:#0e7c7b; --viol:#6a4c93; --ambr:#b97a00; --line:#e2e8f0;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#10182b; --ink:#e8edf7; --mut:#9fb0cf; --card:#18233f;
+           --navy:#0c1322; --teal:#3ec6c4; --viol:#b39ddb; --ambr:#f4a100; --line:#27355a; }
+  }
+  *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  .wrap{max-width:880px;margin:0 auto;padding:0 20px 60px}
+  header{background:var(--navy);color:#fff;padding:52px 20px 44px}
+  header .wrap{padding-bottom:0}
+  .kicker{font-size:12px;letter-spacing:.2em;color:#f4a100;font-weight:700;text-transform:uppercase}
+  h1{font-family:Cambria,Georgia,serif;font-size:clamp(24px,4vw,34px);line-height:1.25;margin:.5em 0 .4em;color:#fff}
+  .tagline{color:#c9d8f0;font-style:italic;max-width:640px}
+  .links{margin-top:22px;display:flex;gap:10px;flex-wrap:wrap}
+  .links a{display:inline-block;padding:9px 16px;border-radius:8px;text-decoration:none;
+    font-weight:600;font-size:14px;background:#f4a100;color:#16213c}
+  .links a.ghost{background:transparent;color:#c9d8f0;border:1px solid #3a4a6e}
+  h2{font-family:Cambria,Georgia,serif;font-size:21px;margin:2.2em 0 .6em}
+  .card{background:var(--card);border-radius:10px;padding:18px 22px;margin:14px 0}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:18px 0}
+  .stat{background:var(--card);border-radius:10px;padding:16px;text-align:center}
+  .stat b{display:block;font-family:Cambria,Georgia,serif;font-size:26px}
+  .stat span{font-size:12.5px;color:var(--mut)}
+  .t{color:var(--teal)} .v{color:var(--viol)} .a{color:var(--ambr)}
+  ul{padding-left:1.2em} li{margin:.45em 0}
+  code{background:var(--card);padding:2px 6px;border-radius:5px;font-size:14px}
+  footer{border-top:1px solid var(--line);margin-top:48px;padding-top:18px;color:var(--mut);font-size:13.5px}
+  a{color:var(--teal)}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="kicker">Manuscript prepared for submission &middot; Digital Communications and Networks</div>
+    <h1>Peak Age of Information over Scheduled, Energy-Constrained Multi-Segment DTNs: Bundle Replication under Route Uncertainty</h1>
+    <div class="tagline">When is a bundle copy worth its energy? A freshness theory for LEO + UAV + terrestrial contact plans &mdash; validated from closed forms down to the ION reference implementation.</div>
+    <div class="links">
+      <a href="paper/main.pdf">Paper (PDF)</a>
+      <a class="ghost" href="slides/paoi-dtn-deck.pdf">Slides</a>
+      <a class="ghost" href="https://github.com/UNO-Networks-Lab/paoi-scheduled-dtn">Code &amp; data</a>
+      <a class="ghost" href="https://doi.org/10.5281/zenodo.21841317">DOI</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <h2>Abstract</h2>
+  <p>We characterize information freshness &mdash; average age (AoI) and peak age,
+  distinguishing the <em>outage-peak</em> (OPAoI) and <em>per-update</em> peak
+  processes, which differ under gated connectivity &mdash; over scheduled,
+  intermittently connected, multi-segment paths (LEO satellite, UAV, terrestrial)
+  in which bundles are replicated across contact opportunities under an energy
+  budget. Much of the freshness literature models persistent links with random
+  erasure or randomly failing relays, and recent satellite/DTN studies treat
+  intermittent store&ndash;carry&ndash;forward connectivity; prior work does not,
+  however, jointly couple deterministic contact-plan gating, multi-copy
+  replication, and an energy-harvesting copy budget. We provide closed-form residual-wait laws
+  for scheduled contacts, a composition rule with an explicit independence
+  condition, and an energy&ndash;replication threshold with an O(1) policy that
+  layers on top of Contact Graph Routing.</p>
+
+  <h2>Headline numbers</h2>
+  <div class="stats">
+    <div class="stat"><b class="v">0.06%</b><span>residual-law error on a real Iridium-NEXT contact plan (101 passes)</span></div>
+    <div class="stat"><b class="t">1.016</b><span>per-bundle regression slope in ION &mdash; the law holds bundle-for-bundle in the reference BP implementation</span></div>
+    <div class="stat"><b class="a">2.7&times;</b><span>over-replication penalty in real CGR at &eta;=1 (atomic all-or-nothing admission)</span></div>
+    <div class="stat"><b class="v">0.41&ndash;0.95</b><span>residual-min ratio across 44 real Iridium pairs &mdash; the route set's latency-diversity potential, set by pass-phase alignment</span></div>
+  </div>
+
+  <h2>Contributions</h2>
+  <ul>
+    <li><b>Residual-wait laws, not queueing delays.</b> One alternating-renewal model
+    covers LEO / UAV / terrestrial segments; mean age is quadratic and peak age linear
+    in sparsity, and peak falls <em>below</em> average age past an exact threshold
+    CV&sup2;(V) &gt; 1 + 2E[U]/E[V].</li>
+    <li><b>Phase mixing prices a copy.</b> Under random schedule offsets latencies
+    compose by convolution, and a second copy buys exactly half the mean absolute
+    dispersion of path latencies. For fixed plans, the joint residual survival is
+    computable from the contact plan &mdash; the <em>phase ladder</em>: evenly
+    staggered (best) to locked (worst), with the random-offset ensemble as the
+    reference in between.</li>
+    <li><b>An energy&ndash;replication threshold.</b> Under all-or-nothing firing the
+    peak-age-optimal copy degree is k* = min(K<sub>max</sub>, &lfloor;&eta;&rfloor; or
+    &lceil;&eta;&rceil;) with &eta; the copies harvested per contact period &mdash;
+    monotone, saturating, and hardened by a distribution-free work-conservation
+    battery-queue analysis.</li>
+    <li><b>An O(1) policy on top of CGR.</b> Two objective evaluations pick the copy
+    count; CGR picks the routes. Matched the exhaustive optimum at every tested i.i.d.-harvest configuration;
+    robust to contact-prediction error, and to bursty harvest up to a measured
+    persistence boundary.</li>
+    <li><b>Phase-aware copy placement.</b> On real ephemeris the route-set
+    latency-diversity potential is set by pass-phase alignment, which the contact plan exposes in advance &mdash;
+    turning an independence assumption into a route-selection criterion.</li>
+  </ul>
+
+  <h2>Validation ladder</h2>
+  <div class="card">
+    <b>Closed forms</b> &rarr; <b>model-exact Monte-Carlo</b> (E1&ndash;E18, all checks pass)
+    &rarr; <b>dtnsim</b> (Bundle Protocol + Contact Graph Routing, with an
+    energy-harvesting battery module and a CGR-native k-copy router)
+    &rarr; <b>real orbits</b> (Iridium-NEXT TLEs over Svalbard)
+    &rarr; <b>ION</b> (reference BP implementation, two-node contact-plan testbed).
+    Every figure in the paper regenerates from the CSVs in this repository.
+  </div>
+
+  <h2>Reproduce in one minute</h2>
+  <div class="card"><code>git clone https://github.com/UNO-Networks-Lab/paoi-scheduled-dtn</code><br>
+  <code>cd paoi-scheduled-dtn/sim &amp;&amp; python3 experiments/e7_e8_threshold.py</code><br>
+  <span style="color:var(--mut);font-size:14px">Tier-1 needs only Python 3.10+; Tier-2/ION instructions in the README.</span></div>
+
+  <footer>
+    Manuscript prepared for submission to <em>Digital Communications and
+    Networks</em>. Code and data are MIT-licensed and archived on Zenodo
+    (<a href="https://doi.org/10.5281/zenodo.21841317">doi:10.5281/zenodo.21841317</a>);
+    dtnsim and ION-DTN are third-party projects and are not redistributed here.
+  </footer>
+</div>
+</body>
+</html>

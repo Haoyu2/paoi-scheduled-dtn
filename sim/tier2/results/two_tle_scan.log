@@ -1,0 +1,48 @@
+satA='IRIDIUM 106' RAAN=85.6, 101 passes/7d, GS=(78.23,15.39); co-period ideal gain 2/3(1-delta)=0.606
+
+satB              RAAN   rho     gain=E[Rmin]/E[R_A]  prod-form err%
+IRIDIUM 103        85.5 +0.102  0.651                  6.8
+IRIDIUM 109        85.6 +0.524  0.811                 33.4
+IRIDIUM 102        85.5 -0.507  0.410                 32.4
+IRIDIUM 105        53.9 +0.292  0.721                 18.6
+IRIDIUM 104        85.6 -0.410  0.452                 25.8
+IRIDIUM 114        85.5 -0.206  0.532                 12.8
+IRIDIUM 108        53.8 +0.335  0.735                 21.0
+IRIDIUM 112        85.4 -0.509  0.411                 32.3
+IRIDIUM 111        85.5 -0.398  0.453                 25.5
+IRIDIUM 113       319.4 +0.605  0.841                 38.6
+IRIDIUM 123       350.7 -0.334  0.481                 21.1
+IRIDIUM 120       319.1 +0.795  0.918                 51.3
+IRIDIUM 115       319.2 -0.286  0.500                 18.2
+IRIDIUM 118       350.7 +0.373  0.750                 23.5
+IRIDIUM 117       350.6 -0.448  0.433                 28.6
+IRIDIUM 126       350.7 -0.091  0.576                  5.6
+IRIDIUM 124       287.5 -0.319  0.486                 20.3
+IRIDIUM 128        22.3 -0.415  0.449                 26.3
+IRIDIUM 121       350.7 +0.777  0.908                 50.1
+IRIDIUM 133        22.3 +0.573  0.827                 36.3
+IRIDIUM 100        22.2 +0.884  0.952                 57.2
+IRIDIUM 122        22.3 -0.510  0.411                 32.4
+IRIDIUM 129        22.3 +0.492  0.797                 31.4
+IRIDIUM 119        22.4 -0.500  0.412                 31.9
+IRIDIUM 107        22.4 -0.219  0.525                 13.8
+IRIDIUM 132        22.3 +0.080  0.641                  5.3
+IRIDIUM 136        22.4 -0.174  0.538                 11.1
+IRIDIUM 139        22.4 -0.386  0.456                 24.7
+IRIDIUM 125        22.5 +0.145  0.662                  9.2
+IRIDIUM 135       319.1 +0.066  0.635                  4.3
+IRIDIUM 138       318.8 +0.182  0.676                 11.4
+IRIDIUM 116       319.1 -0.227  0.522                 14.3
+IRIDIUM 130       319.4 -0.148  0.548                  9.5
+IRIDIUM 151       319.2 +0.462  0.788                 29.6
+IRIDIUM 134       319.2 -0.487  0.417                 31.1
+IRIDIUM 137       319.3 -0.419  0.448                 26.5
+IRIDIUM 141       319.2 -0.505  0.412                 32.1
+IRIDIUM 153       287.6 +0.241  0.703                 15.5
+IRIDIUM 131       319.2 -0.368  0.463                 23.6
+IRIDIUM 144       287.5 +0.682  0.872                 43.8
+
+best-staggered pair : IRIDIUM 102 gain=0.410 (rho=-0.507)
+most phase-locked   : IRIDIUM 100 gain=0.952 (rho=+0.884)
+nearest-independent : IRIDIUM 135 rho=+0.066 gain=0.635 prod-form err=4.3%
+ideal co-period gain: 0.606

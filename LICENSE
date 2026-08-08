@@ -1,0 +1,38 @@
+MIT License
+
+Copyright (c) 2026 Haoyu Wang, Bo Sheng, Xiaoqian Zhang
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+Scope: the MIT license above covers the software in this repository
+(simulators, experiment scripts, patches, figure generators, scenario
+files). The manuscript (paper/), slides, and their figures are
+copyright of the authors and are included for reference; third-party
+inputs retain their own terms.
+
+Third-party note: the scripts under sim/tier2/dtnsim_patch/ are patch
+installers that modify the dtnsim simulator
+(https://github.com/lggaray/dtnsim, pinned at commit
+a9cf3fc655308a95884260a53878fbecb5d09708), which carries its own
+license; dtnsim itself is not redistributed here. The scripts under
+sim/ion/ drive NASA's ION-DTN 4.1.4 (also not redistributed). The
+committed iridium.tle snapshot derives from CelesTrak GP data (see
+sim/tier2/TLE_PROVENANCE.md).

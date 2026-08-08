@@ -1,0 +1,7 @@
+HIGHLIGHTS (Digital Communications and Networks; max 85 characters per bullet)
+
+- Closed-form residual-wait and peak-age laws for scheduled DTN contact plans
+- Replication pays only under route uncertainty; oracle single-copy ties otherwise
+- Optimal copy degree brackets the energy harvested per contact period
+- O(1) two-candidate policy over CGR, extended to per-copy route-success q
+- Verified in Monte-Carlo, dtnsim/CGR, real Iridium ephemeris, and ION
